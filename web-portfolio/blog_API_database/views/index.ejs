@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Blog</title>
+  <link rel="stylesheet" href="/styles/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">My Blog</h1>
+    <a href="/new"><button class="btn new">New Post</button></a>
+
+    <% posts.forEach(post => { %>
+      <div class="post">
+        <h2><%= post.title %></h2>
+        <p class="date"><%= new Date(post.date).toLocaleString() %></p>
+        <p><%= post.content %></p>
+        <p class="author">By <%= post.author %></p>
+
+        <div class="actions">
+          <form action="/edit/<%= post.id %>" method="get" style="display:inline;">
+            <button class="btn edit">Edit</button>
+          </form>
+          <form action="/delete/<%= post.id %>" method="post" style="display:inline;">
+            <button class="btn delete">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
